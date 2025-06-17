@@ -1,34 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react"
+import { Routes, Route, useNavigate } from "react-router-dom"
+import { signInWithPopup } from "firebase/auth"
+import { auth, provider } from "./firebase"
+
+import Home from "./Home.jsx"
+import ProtectedRoute from "./ProtectedRoute"
+import "./App.css"
+import logo from "./assets/logo.png"
+import border from "./assets/landing-border.png"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const navigate = useNavigate()
+  const [user, setUser] = useState(null)
 
+  // handles google login and routing
+  const handleLogin = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        setUser(result.user)
+        navigate("/home")
+      })
+      .catch((error) => {
+        console.error("Google Sign-In Error:", error)
+      })
+  }
+
+  // sets up routing for landing and home
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <div className="app-container">
+            <img src={border} alt="frame" className="landing-border" />
+            <div className="landing-content">
+              <img src={logo} alt="Glossip Girl logo" className="logo" />
+              <button className="pixel-button" onClick={handleLogin}>
+                Sign in with Google
+              </button>
+            </div>
+          </div>
+        }
+      />
+      <Route
+        path="/home"
+        element={
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
   )
 }
 
