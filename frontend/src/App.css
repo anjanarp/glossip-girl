@@ -18,7 +18,7 @@ body {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-color: #FF7FA1;
+  background-color: #FF7FA3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,13 +57,11 @@ body {
   font-size: 1.3rem;
   font-weight: 600;
   background-color: #FF88AA;
-  /* bubblegum pink */
   color: #900040;;
   border: none;
   position: relative;
   cursor: pointer;
   image-rendering: pixelated;
-  /* make it crisp like old games */
   z-index: 1;
 }
 
@@ -75,7 +73,7 @@ body {
   left: -6px;
   right: -6px;
   bottom: -6px;
-  background-color: #FF7FA1;
+  background-color: #FF7FA3;
   border: 3px solid #7a002d;
   box-shadow:
     inset -4px -4px 0 #FFCCD5,

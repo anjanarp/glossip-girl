@@ -1,1 +1,10 @@
+# ignore virtual environments
 backend/vocabenv/
+
+# ignore Firebase service account key
+backend/service-account.json
+
+# ignore Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
