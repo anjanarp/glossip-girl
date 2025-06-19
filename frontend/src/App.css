@@ -5,7 +5,7 @@ html {
   padding: 0;
   background-color: #FF7FA1;
   height: 100%;
-  font-family: 'VT323', monospace;
+  font-family: 'Press Start 2P';
 }
 
 /* this makes the default cursor the dark custom one */
@@ -53,7 +53,7 @@ body {
 /* styling the pixel button */
 .pixel-button {
   padding: 1.25rem 2rem;
-  font-family: 'VT323', monospace;
+  font-family: 'Press Start 2P';
   font-size: 1.3rem;
   font-weight: 600;
   background-color: #FF88AA;

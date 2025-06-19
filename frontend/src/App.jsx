@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Routes, Route, useNavigate } from "react-router-dom"
 import { signInWithPopup } from "firebase/auth"
 import { auth, provider } from "./firebase"
+import { onAuthStateChanged } from "firebase/auth"
 
 import Home from "./Home.jsx"
 import ProtectedRoute from "./ProtectedRoute"
@@ -25,6 +26,16 @@ function App() {
       })
   }
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
+        setUser(firebaseUser)
+      }
+    })
+
+    return () => unsubscribe()
+  }, [])
+
   // sets up routing for landing and home
   return (
     <Routes>
@@ -46,7 +57,7 @@ function App() {
         path="/home"
         element={
           <ProtectedRoute>
-            <Home />
+            <Home user={user} />
           </ProtectedRoute>
         }
       />

@@ -1,0 +1,249 @@
+/* container for the home screen */
+.home-container {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    padding: 0;
+    margin: 0;
+}
+
+/* box that shows export instructions */
+.instructions-block {
+    font-family: 'Press Start 2P';
+    font-size: .7rem;
+    color: #900040;
+    line-height: .95rem;
+    margin-bottom: 1rem;
+    background-color: #ffe6ed;
+    padding: .1rem;
+    padding-left: 1rem;
+    border: 2px dashed #ff88aa;
+    width: 500px;
+    margin-left: -.3rem;
+}
+
+/* wrapper for the upload ui controls */
+.import-controls {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    max-width: 700px;
+    align-items: center;
+}
+
+/* upload button styling */
+.import-deck-button {
+    padding: 1rem;
+    padding-bottom: -.1rem;
+    font-family: 'Press Start 2P';
+    font-size: .75rem;
+    font-weight: 600;
+    background-color: #FF88AA;
+    color: #900040;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    image-rendering: pixelated;
+    z-index: 1;
+}
+
+.import-deck-button::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background-color: #FF7FA3;
+    border: 3px solid #7a002d;
+    box-shadow: inset -4px -4px 0 #FFCCD5, inset 4px 4px 0 #900040;
+    z-index: -1;
+    image-rendering: pixelated;
+}
+
+.import-deck-button:hover::before {
+    background-color: #ff668a;
+    border-color: #5a0020;
+    box-shadow: inset 4px 4px 0 #fff0f5, inset -4px -4px 0 #700030;
+}
+
+.import-deck-button:active::before {
+    background-color: #ff99bb;
+    border-color: #5a0020;
+    box-shadow: inset -4px -4px 0 #fff0f5, inset 4px 4px 0 #700030;
+}
+
+.import-deck-button {
+    outline: none;
+    cursor: url('cursor_dark.cur'), auto;
+}
+
+.import-deck-button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.import-deck-button:hover {
+    cursor: url('cursor_dark.cur'), auto;
+}
+
+.import-deck-button:active {
+    cursor: url('cursor.cur'), auto;
+}
+
+/* wrapper around the uploaded filename */
+.filename-wrapper {
+    position: relative;
+    display: inline-flex;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.filename-wrapper.no-border::before {
+    display: none;
+}
+
+.filename-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background-color: #FF7FA3;
+    border: 3px solid #7a002d;
+    box-shadow: inset -4px -4px 0 #FFCCD5, inset 4px 4px 0 #900040;
+    z-index: 0;
+    pointer-events: none;
+    image-rendering: pixelated;
+}
+
+/* displayed name of uploaded file */
+.uploaded-filename {
+    position: relative;
+    z-index: 1;
+    font-family: 'Press Start 2P';
+    font-size: .75rem;
+    color: #900040;
+    background-color: #FF7FA3;
+    padding: 1rem;
+    image-rendering: pixelated;
+}
+
+/* input field for naming the deck */
+.deck-name-input {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 280px;
+    font-family: 'Press Start 2P';
+    font-size: .75rem;
+    padding: 1rem;
+    padding-bottom: -.1rem;
+    background-color: #FFE6ED;
+    color: #900040;
+    border: none;
+    image-rendering: pixelated;
+    outline: none;
+    box-sizing: border-box;
+    display: block;
+}
+
+/* wrapper around the deck name input */
+.deck-name-input-wrapper {
+    position: relative;
+    display: inline-flex;
+    width: fit-content;
+    height: fit-content;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.deck-name-input-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    background-color: #FF7FA3;
+    border: 3px solid #7a002d;
+    box-shadow:
+        inset -4px -4px 0 #FFCCD5,
+        inset 4px 4px 0 #900040;
+    z-index: 0;
+    image-rendering: pixelated;
+    pointer-events: none;
+}
+
+.deck-name-input::placeholder {
+    font-family: 'Press Start 2P';
+    font-size: .75rem;
+    color: #900040;
+    opacity: 1;
+}
+
+.deck-name-input:hover {
+    cursor: url('cursor.cur'), auto;
+}
+
+.deck-name-input::selection {
+    background: #ffb6c1;
+    color: #900040;
+}
+
+/* styling for add deck button */
+.add-deck-button {
+    padding: 1rem;
+    padding-bottom: -.1rem;
+    font-family: 'Press Start 2P';
+    font-size: .75rem;
+    font-weight: 600;
+    background-color: #FF88AA;
+    color: #900040;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    image-rendering: pixelated;
+    z-index: 1;
+    outline: none;
+}
+
+.add-deck-button::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background-color: #FF7FA3;
+    border: 3px solid #7a002d;
+    box-shadow: inset -4px -4px 0 #FFCCD5, inset 4px 4px 0 #900040;
+    z-index: -1;
+    image-rendering: pixelated;
+}
+
+.add-deck-button:hover::before {
+    background-color: #ff668a;
+    border-color: #5a0020;
+    box-shadow: inset 4px 4px 0 #fff0f5, inset -4px -4px 0 #700030;
+}
+
+.add-deck-button:active::before {
+    background-color: #ff99bb;
+    border-color: #5a0020;
+    box-shadow: inset -4px -4px 0 #fff0f5, inset 4px 4px 0 #700030;
+}
+
+.add-deck-button:hover {
+    cursor: url('cursor_dark.cur'), auto;
+}
+
+.add-deck-button:active {
+    cursor: url('cursor.cur'), austo;
+}
+
+.add-deck-button:focus {
+    outline: none;
+    box-shadow: none;
+}
