@@ -1,12 +1,14 @@
 /* setting up the basic page layout and font */
-body,
-html {
+html,
+body {
   margin: 0;
   padding: 0;
+  overflow: auto;
   background-color: #FF7FA1;
-  height: 100%;
   font-family: 'Press Start 2P';
+  min-width: 1440px;
 }
+
 
 /* this makes the default cursor the dark custom one */
 body {
@@ -16,8 +18,8 @@ body {
 /* centering the main container in the middle of the screen */
 .app-container {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 1510px;
+  height: 1080px;
   background-color: #FF7FA3;
   display: flex;
   justify-content: center;
@@ -27,7 +29,7 @@ body {
 /* the pink frame around the landing page */
 .landing-border {
   position: absolute;
-  width: 90vw;
+  width: 1200px;
   max-width: 1200px;
   height: auto;
   z-index: 1;
@@ -57,7 +59,8 @@ body {
   font-size: 1.3rem;
   font-weight: 600;
   background-color: #FF88AA;
-  color: #900040;;
+  color: #900040;
+  ;
   border: none;
   position: relative;
   cursor: pointer;

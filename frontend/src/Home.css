@@ -1,10 +1,71 @@
-/* container for the home screen */
-.home-container {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    padding: 0;
+html,
+body {
     margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #FF7FA1;
+}
+
+/* main container for the home screen */
+.home-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding-left: 2rem;
+    margin: 0;
+    width: 1510px;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: #FF7FA1;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* layout for the top section */
+.header-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    position: relative;
+    margin-top: 2rem;
+}
+
+.header-row>*:last-child {
+    margin-left: auto;
+}
+
+/* left-side import area */
+.importing-component {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-shrink: 0;
+    margin-top: 1rem;
+}
+
+/* deck selector area */
+.deck-selection-component {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-shrink: 0;
+    margin-left: 3rem;
+    padding-top: 2rem;
+}
+
+/* top logo styling */
+.top-logo {
+    height: 12.5rem;
+    transition: height 0.3s ease;
+    image-rendering: pixelated;
+    pointer-events: none;
+    flex-shrink: 0;
+    margin-right: 1.5rem;
+    justify-content: flex-end;
+    margin-top: .75rem;
 }
 
 /* box that shows export instructions */
@@ -22,21 +83,22 @@
     margin-left: -.3rem;
 }
 
-/* wrapper for the upload ui controls */
+/* wrapper for the import ui controls */
 .import-controls {
     display: flex;
     flex-direction: row;
     gap: 1rem;
     max-width: 700px;
+    min-width: 700px;
     align-items: center;
 }
 
-/* upload button styling */
+/* import button styling */
 .import-deck-button {
     padding: 1rem;
     padding-bottom: -.1rem;
     font-family: 'Press Start 2P';
-    font-size: .75rem;
+    font-size: .6rem;
     font-weight: 600;
     background-color: #FF88AA;
     color: #900040;
@@ -47,6 +109,7 @@
     z-index: 1;
 }
 
+/* border effect around import */
 .import-deck-button::before {
     content: "";
     position: absolute;
@@ -91,12 +154,13 @@
     cursor: url('cursor.cur'), auto;
 }
 
-/* wrapper around the uploaded filename */
+/* wrapper around the imported filename */
 .filename-wrapper {
     position: relative;
     display: inline-flex;
     box-sizing: border-box;
     padding: 0;
+    max-width: 10rem;
 }
 
 .filename-wrapper.no-border::before {
@@ -123,7 +187,7 @@
     position: relative;
     z-index: 1;
     font-family: 'Press Start 2P';
-    font-size: .75rem;
+    font-size: .6rem;
     color: #900040;
     background-color: #FF7FA3;
     padding: 1rem;
@@ -135,9 +199,9 @@
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 280px;
+    max-width: 250px;
     font-family: 'Press Start 2P';
-    font-size: .75rem;
+    font-size: .6rem;
     padding: 1rem;
     padding-bottom: -.1rem;
     background-color: #FFE6ED;
@@ -178,7 +242,7 @@
 
 .deck-name-input::placeholder {
     font-family: 'Press Start 2P';
-    font-size: .75rem;
+    font-size: .6rem;
     color: #900040;
     opacity: 1;
 }
@@ -197,7 +261,7 @@
     padding: 1rem;
     padding-bottom: -.1rem;
     font-family: 'Press Start 2P';
-    font-size: .75rem;
+    font-size: .6rem;
     font-weight: 600;
     background-color: #FF88AA;
     color: #900040;
@@ -246,4 +310,431 @@
 .add-deck-button:focus {
     outline: none;
     box-shadow: none;
+}
+
+/* outer block for the deck selection area */
+.deck-selector-block {
+    position: absolute;
+    top: 6rem;
+    left: 16rem;
+    background-color: #ffe6ed;
+    border: 2px dashed #ff88aa;
+    padding: 1rem;
+    font-family: 'Press Start 2P';
+    color: #900040;
+    z-index: 10;
+    margin-left: 18rem;
+    margin-top: -5rem;
+    max-width: 440px;
+    min-width: 440px;
+}
+
+/* layout for the two deck lists */
+.deck-checkbox-lists {
+    display: flex;
+    gap: 3rem;
+    margin-top: 1rem;
+}
+
+.deck-checkbox-lists>div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    max-height: 5.5rem;
+    overflow-y: auto;
+    padding-right: 0.2rem;
+}
+
+/* pixelated scrollbar style */
+.deck-checkbox-lists>div::-webkit-scrollbar {
+    width: 8px;
+}
+
+.deck-checkbox-lists>div::-webkit-scrollbar-track {
+    background: #ffe6ed;
+    image-rendering: pixelated;
+}
+
+.deck-checkbox-lists>div::-webkit-scrollbar-thumb {
+    background-color: #900040;
+    border-left: 2px solid #ae004e;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+    image-rendering: pixelated;
+}
+
+.deck-checkbox-lists>div::-webkit-scrollbar-thumb:hover {
+    background-color: #700030;
+}
+
+/* section titles for each side */
+.checkbox-section-title {
+    font-size: 0.6rem;
+    margin-bottom: 0.5rem;
+    color: #900040;
+}
+
+/* styled checkbox text */
+.deck-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.6rem;
+    margin-bottom: 0.3rem;
+    cursor: url('cursor_dark.cur'), auto;
+}
+
+.deck-checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'Press Start 2P';
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+}
+
+.deck-checkbox-label {
+    color: #900040;
+}
+
+/* toggle button styled like your other buttons */
+.deck-toggle-button {
+    width: 1.4rem;
+    height: 1.4rem;
+    font-family: 'Press Start 2P';
+    font-size: 0.9rem;
+    background-color: #FF88AA;
+    color: #900040;
+    border: none;
+    position: relative;
+    cursor: url('cursor_dark.cur'), auto;
+    image-rendering: pixelated;
+    z-index: 1;
+    text-align: center;
+    outline: none;
+}
+
+.deck-toggle-button::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background-color: #FF7FA3;
+    border: 3px solid #7a002d;
+    box-shadow: inset -4px -4px 0 #FFCCD5, inset 4px 4px 0 #900040;
+    z-index: -1;
+    image-rendering: pixelated;
+}
+
+.deck-toggle-button:hover::before {
+    background-color: #ff668a;
+    border-color: #5a0020;
+    box-shadow: inset 4px 4px 0 #fff0f5, inset -4px -4px 0 #700030;
+}
+
+.deck-toggle-button.active::before {
+    background-color: #ff003f;
+    border-color: #3a0010;
+    box-shadow: inset -4px -4px 0 #fff0f5, inset 4px 4px 0 #700030;
+}
+
+
+.deck-toggle-button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.deck-toggle-button:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+.deck-toggle-button.active {
+    transform: translateY(1px);
+}
+
+/* main components underneath the header row */
+.below-header-row {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+/* wraps the dashed box and search bar as a column */
+.selected-fronts-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-right: 2rem;
+    height: 100%;
+
+}
+
+/* dashed box showing selected fronts */
+.selected-fronts-block {
+    background-color: #ffe6ed;
+    border: 2px dashed #ff88aa;
+    padding: 1rem;
+    font-family: 'Press Start 2P';
+    color: #900040;
+    height: 550px;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+/* title inside dashed box */
+.selected-fronts-block .checkbox-section-title {
+    font-size: 1.2rem;
+    color: #900040;
+    margin-bottom: 0.2rem;
+}
+
+/* scrollable inner box */
+.selected-fronts-box {
+    overflow-y: auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding-right: 0.4rem;
+    max-height: 30rem;
+}
+
+/* scrollbar style */
+.selected-fronts-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.selected-fronts-box::-webkit-scrollbar-track {
+    background: #ffe6ed;
+}
+
+.selected-fronts-box::-webkit-scrollbar-thumb {
+    background-color: #900040;
+    border-left: 2px solid #ae004e;
+}
+
+/* each front line */
+.selected-front {
+    font-size: 0.6rem;
+    color: #900040;
+    cursor: url('cursor_dark.cur'), auto;
+}
+
+.selected-front.active {
+    background-color: #900040;
+    color: #ffe6ed;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-left: 0.25rem;
+    width: fit-content;
+}
+
+/* search bar that comes below the dashed box */
+.fixed-front-search {
+    margin-top: 2rem;
+}
+
+/* outer shell */
+.front-search-input-wrapper {
+    position: relative;
+    display: block;
+    height: fit-content;
+    margin-left: .5rem;
+}
+
+.front-search-input-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    background-color: #FF7FA3;
+    border: 3px solid #7a002d;
+    box-shadow:
+        inset -4px -4px 0 #FFCCD5,
+        inset 4px 4px 0 #900040;
+    z-index: 0;
+    image-rendering: pixelated;
+    pointer-events: none;
+}
+
+/* styled like deck name */
+.front-search-input {
+    position: relative;
+    z-index: 1;
+    width: 445px;
+    font-family: 'Press Start 2P';
+    font-size: .6rem;
+    padding: 1rem;
+    background-color: #FFE6ED;
+    color: #900040;
+    border: none;
+    image-rendering: pixelated;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.front-search-input::placeholder {
+    font-family: 'Press Start 2P';
+    font-size: .6rem;
+    color: #900040;
+    opacity: 1;
+}
+
+.front-search-input:hover {
+    cursor: url('cursor.cur'), auto;
+}
+
+.front-search-input::selection {
+    background: #ffb6c1;
+    color: #900040;
+}
+
+.similarity-right-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 1rem;
+    height: 100%;
+    padding-right: 2rem;
+}
+
+.definition-compare-block {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.definition-window {
+    flex: 1;
+    background-color: #ffe6ed;
+    border: 2px dashed #ff88aa;
+    padding: 1rem;
+    font-family: 'Press Start 2P';
+    color: #900040;
+    box-sizing: border-box;
+    height: 9rem;
+    overflow-y: auto;
+}
+
+.definition-window::-webkit-scrollbar {
+    width: 5px;
+    padding-right: .5rem;
+}
+
+.definition-window::-webkit-scrollbar-track {
+    background: #ffe6ed;
+}
+
+.definition-window::-webkit-scrollbar-thumb {
+    background-color: #900040;
+    border-left: 2px solid #ae004e;
+}
+
+.definition-content {
+    overflow-y: auto;
+    max-height: 140px;
+    font-family: 'Press Start 2P';
+    font-size: 0.6rem;
+    line-height: 0.9rem;
+    color: #900040;
+    padding-right: 0.4rem;
+}
+
+.definition-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.definition-content::-webkit-scrollbar-track {
+    background: #ffe6ed;
+}
+
+.definition-contentx::-webkit-scrollbar-thumb {
+    background-color: #900040;
+    border-left: 2px solid #ae004e;
+}
+
+.similarity-window {
+    height: 390px;
+    flex-grow: 0;
+    background-color: #ffe6ed;
+    border: 2px dashed #ff88aa;
+    padding: 1rem;
+    font-family: 'Press Start 2P';
+    color: #900040;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.similarity-content {
+    font-size: 0.6rem;
+    margin-top: 0.5rem;
+    height: 330px;
+    overflow-y: auto;
+}
+
+.similarity-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.similarity-content::-webkit-scrollbar-track {
+    background: #ffe6ed;
+}
+
+.similarity-contentx::-webkit-scrollbar-thumb {
+    background-color: #900040;
+    border-left: 2px solid #ae004e;
+}
+
+.slider-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-left: -.5rem;
+    margin-top: -4rem;
+}
+
+.threshold-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    max-width: 440px;
+    height: 8rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    background: url('./assets/slider.png') no-repeat center;
+    background-size: contain;
+    border: none;
+    outline: none;
+    image-rendering: pixelated;
+}
+
+.threshold-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 2rem;
+    width: 2rem;
+    background: url('./assets/thumb.png') no-repeat center;
+    background-size: contain;
+    cursor: url('cursor_dark.cur'), auto;
+    image-rendering: pixelated;
+}
+
+
+.slider-value {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    font-family: 'Press Start 2P';
+    color: #900040;
+    margin-bottom: 0.65rem;
+    margin-left: -1rem;
 }
