@@ -297,7 +297,7 @@ body {
 }
 
 .add-deck-button:hover {
-    cursor: url('cursor_dark.cur'), auto;
+    cursor: url('/cursor_dark.cur'), auto;
 }
 
 .add-deck-button:active {
@@ -379,7 +379,7 @@ body {
     gap: 0.5rem;
     font-size: 0.6rem;
     margin-bottom: 0.3rem;
-    cursor: url('cursor_dark.cur'), auto;
+    cursor: url('/cursor_dark.cur'), auto;
 }
 
 .deck-checkbox-row {
@@ -405,7 +405,7 @@ body {
     color: #900040;
     border: none;
     position: relative;
-    cursor: url('cursor_dark.cur'), auto;
+    cursor: url('/cursor_dark.cur'), auto;
     image-rendering: pixelated;
     z-index: 1;
     text-align: center;
@@ -522,7 +522,7 @@ body {
 .selected-front {
     font-size: 0.6rem;
     color: #900040;
-    cursor: url('cursor_dark.cur'), auto;
+    cursor: url('/cursor_dark.cur'), auto;
 }
 
 .selected-front.active {
@@ -722,7 +722,7 @@ body {
     width: 2rem;
     background: url('./assets/thumb.png') no-repeat center;
     background-size: contain;
-    cursor: url('cursor_dark.cur'), auto;
+    cursor: url('/cursor_dark.cur'), auto;
     image-rendering: pixelated;
 }
 
