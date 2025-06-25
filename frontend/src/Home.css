@@ -95,7 +95,7 @@ body {
 
 /* import button styling */
 .import-deck-button {
-    padding: 1rem;
+    padding: 1.1rem;
     padding-bottom: -.1rem;
     font-family: 'Press Start 2P';
     font-size: .6rem;
@@ -138,7 +138,7 @@ body {
 
 .import-deck-button {
     outline: none;
-    cursor: url('cursor_dark.cur'), auto;
+    cursor: url('/cursor_dark.cur'), auto;
 }
 
 .import-deck-button:focus {
@@ -147,11 +147,11 @@ body {
 }
 
 .import-deck-button:hover {
-    cursor: url('cursor_dark.cur'), auto;
+    cursor: url('/cursor_dark.cur'), auto;
 }
 
 .import-deck-button:active {
-    cursor: url('cursor.cur'), auto;
+    cursor: url('/cursor.cur'), auto;
 }
 
 /* wrapper around the imported filename */
@@ -248,7 +248,7 @@ body {
 }
 
 .deck-name-input:hover {
-    cursor: url('cursor.cur'), auto;
+    cursor: url('/cursor.cur'), auto;
 }
 
 .deck-name-input::selection {
@@ -258,7 +258,7 @@ body {
 
 /* styling for add deck button */
 .add-deck-button {
-    padding: 1rem;
+    padding: 1.2rem;
     padding-bottom: -.1rem;
     font-family: 'Press Start 2P';
     font-size: .6rem;
@@ -304,7 +304,7 @@ body {
 }
 
 .add-deck-button:active {
-    cursor: url('cursor.cur'), austo;
+    cursor: url('/cursor.cur'), austo;
 }
 
 .add-deck-button:focus {
@@ -413,6 +413,7 @@ body {
     z-index: 1;
     text-align: center;
     outline: none;
+    padding: 1.2rem;
 }
 
 .deck-toggle-button::before {
@@ -591,7 +592,7 @@ body {
 }
 
 .front-search-input:hover {
-    cursor: url('cursor.cur'), auto;
+    cursor: url('/cursor.cur'), auto;
 }
 
 .front-search-input::selection {

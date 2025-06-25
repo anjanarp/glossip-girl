@@ -4,7 +4,7 @@ import logo from "./assets/logo.png"
 
 import { useEffect } from "react"
 import { collection, getDocs } from "firebase/firestore"
-import { db } from "./firebase"
+import { db } from "./firebase.js"
 
 function Home({ user }) {
   // state for uploaded file and deck name
