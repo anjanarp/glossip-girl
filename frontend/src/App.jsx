@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { Routes, Route, useNavigate } from "react-router-dom"
 import { signInWithPopup } from "firebase/auth"
-import { auth, provider } from "./firebase"
+import { auth, provider } from "./firebase.js"
 import { onAuthStateChanged } from "firebase/auth"
 
 import Home from "./Home.jsx"
