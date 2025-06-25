@@ -96,7 +96,6 @@ body {
 /* import button styling */
 .import-deck-button {
     padding: 1rem 1.5rem;
-    padding-bottom: -.1rem;
     font-family: 'Press Start 2P';
     font-size: .6rem;
     font-weight: 600;
