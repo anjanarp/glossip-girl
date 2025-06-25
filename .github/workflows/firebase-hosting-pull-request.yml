@@ -34,3 +34,4 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GLOSSIP_GIRL }}
           projectId: glossip-girl
           entryPoint: frontend
+          channelId: live
