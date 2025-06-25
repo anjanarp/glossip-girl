@@ -11,12 +11,11 @@ permissions:
   pull-requests: write
 jobs:
   build_and_preview:
-    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Inject VITE environment variables
-        run:
+        run: |
           echo "VITE_API_KEY=${{ secrets.VITE_API_KEY }}" >> .env
           echo "VITE_AUTH_DOMAIN=${{ secrets.VITE_AUTH_DOMAIN }}" >> .env
           echo "VITE_PROJECT_ID=${{ secrets.VITE_PROJECT_ID }}" >> .env
