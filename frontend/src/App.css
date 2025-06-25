@@ -3,7 +3,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  overflow: auto;
+  overflow: hidden;
   background-color: #FF7FA1;
   font-family: 'Press Start 2P';
   min-width: 1440px;
@@ -33,6 +33,7 @@ body {
   max-width: 1200px;
   height: auto;
   z-index: 1;
+  margin-bottom: 4rem;
 }
 
 /* stacks everything in a column inside the frame */
@@ -106,7 +107,7 @@ body {
 /* making sure the button always uses the custom cursor */
 .pixel-button {
   outline: none;
-  cursor: url('cursor_dark.cur'), auto;
+  cursor: url('/cursor_dark.cur'), auto;
 }
 
 /* no ugly blue outline on focus */
@@ -117,10 +118,10 @@ body {
 
 /* keep dark cursor on hover */
 .pixel-button:hover {
-  cursor: url('cursor_dark.cur'), auto;
+  cursor: url('/cursor_dark.cur'), auto;
 }
 
 /* switch to light cursor when clicked */
 .pixel-button:active {
-  cursor: url('cursor.cur'), auto;
-}
+  cursor: url('/cursor.cur'), auto;
+}/* clean build trigger */
