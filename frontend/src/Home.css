@@ -202,7 +202,6 @@ body {
     font-family: 'Press Start 2P';
     font-size: .6rem;
     padding: 1rem;
-    padding-bottom: -.1rem;
     background-color: #FFE6ED;
     color: #900040;
     border: none;
@@ -258,7 +257,6 @@ body {
 /* styling for add deck button */
 .add-deck-button {
     padding: 1rem 1.5rem;
-    padding-bottom: -.1rem;
     font-family: 'Press Start 2P';
     font-size: .6rem;
     font-weight: 600;
