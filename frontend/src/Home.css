@@ -95,7 +95,7 @@ body {
 
 /* import button styling */
 .import-deck-button {
-    padding: 1.1rem;
+    padding: 1rem 1.5rem;
     padding-bottom: -.1rem;
     font-family: 'Press Start 2P';
     font-size: .6rem;
@@ -258,7 +258,7 @@ body {
 
 /* styling for add deck button */
 .add-deck-button {
-    padding: 1.2rem;
+    padding: 1rem 1.5rem;
     padding-bottom: -.1rem;
     font-family: 'Press Start 2P';
     font-size: .6rem;
@@ -413,7 +413,6 @@ body {
     z-index: 1;
     text-align: center;
     outline: none;
-    padding: 1.2rem;
 }
 
 .deck-toggle-button::before {
