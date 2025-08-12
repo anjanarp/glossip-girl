@@ -16,7 +16,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 
 # firebase setup
-cred = credentials.Certificate("service-account.json")
+cred_path = os.environ.get("FIREBASE_CREDENTIALS")
+cred = credentials.Certificate(cred_path)
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 

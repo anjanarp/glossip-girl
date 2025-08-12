@@ -6,9 +6,12 @@ import { collection, getDocs, doc, deleteDoc, writeBatch } from "firebase/firest
 import { db } from "./firebase.js"
 
 function Home({ user }) {
+  // api url
+  const API_BASE_URL = "https://glossip-girl-api-693283106922.us-west1.run.app"
+
   // state for uploaded file and deck name
   const [file, setFile] = useState(null)
-  const fileInputRef = useRef(null);
+  const fileInputRef = useRef(null)
   const [deckName, setDeckName] = useState("")
   const [showAdd, setShowAdd] = useState(false)
 
@@ -69,7 +72,7 @@ function Home({ user }) {
       }
 
       try {
-        const response = await fetch("http://127.0.0.1:8000/upload-deck", {
+        const response = await fetch(`${API_BASE_URL}/upload-deck`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
@@ -158,7 +161,7 @@ function Home({ user }) {
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/compute-similarity", {
+      const response = await fetch(`${API_BASE_URL}/compute-similarity`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
