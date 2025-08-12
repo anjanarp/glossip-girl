@@ -9,12 +9,15 @@ from firebase_admin import credentials
 import pandas as pd
 import numpy as np
 import json
+import os
 
 import Levenshtein
 from sklearn.metrics.pairwise import cosine_similarity
 
 
 # firebase setup
+#firebase_creds_path = os.environ.get("FIREBASE_CREDENTIALS", "service-account.json")
+# cred = credentials.Certificate(firebase_creds_path)
 cred = credentials.Certificate("service-account.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
@@ -170,6 +173,8 @@ async def compute_similarity(req: SimilarityRequest):
                             "front": entry["front"],
                             "back": entry["back"]
                         })
+                    
+                print(matches)
 
             elif req.mode == "spelling":
                 for entry in entries:
@@ -196,3 +201,8 @@ async def compute_similarity(req: SimilarityRequest):
         "similar_matches": matches
     }
 
+port = int(os.environ.get("PORT", 8080))
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=port)

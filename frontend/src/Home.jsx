@@ -1,16 +1,19 @@
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react";
 import "./Home.css"
 import logo from "./assets/logo.png"
 
-import { useEffect } from "react"
-import { collection, getDocs } from "firebase/firestore"
+import { collection, getDocs, doc, deleteDoc, writeBatch } from "firebase/firestore"
 import { db } from "./firebase.js"
 
 function Home({ user }) {
   // state for uploaded file and deck name
   const [file, setFile] = useState(null)
+  const fileInputRef = useRef(null);
   const [deckName, setDeckName] = useState("")
   const [showAdd, setShowAdd] = useState(false)
+
+  // state for deleting a deck
+  const [deletingDeck, setDeletingDeck] = useState(null)
 
   // state for deck selections and similarity mode
   const [similarityMode, setSimilarityMode] = useState("definition")
@@ -35,6 +38,9 @@ function Home({ user }) {
   const [similarWords, setSimilarWords] = useState([])
   const [selectedSimilarWord, setSelectedSimilarWord] = useState(null)
   const [selectedSimilarWordBack, setSelectedSimilarWordBack] = useState(null)
+
+  // controls whether the panel shows selectors or manage list
+  const [manageMode, setManageMode] = useState(false)
 
   // handle file upload input
   const handleFileChange = (e) => {
@@ -81,11 +87,59 @@ function Home({ user }) {
         setFile(null)
         setDeckName("")
         setShowAdd(false)
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
       }
     }
 
     reader.readAsText(file)
   }
+
+  // delete a deck from the backend and reset the ui
+  const deleteDeckRecursive = async (deck) => {
+    if (!user) return
+    const ok = window.confirm(`Delete deck "${deck}" and all its data? This can't be undone.`)
+    if (!ok) return
+
+    setDeletingDeck(deck)
+    try {
+      const deckRef = doc(db, "users", user.uid, "decks", deck)
+      const chunksRef = collection(deckRef, "chunks")
+      const chunkSnap = await getDocs(chunksRef)
+
+      // delete chunks in less than 500 batches
+      const docs = chunkSnap.docs
+      for (let i = 0; i < docs.length; i += 500) {
+        const batch = writeBatch(db)
+        docs.slice(i, i + 500).forEach(d => batch.delete(d.ref))
+        await batch.commit()
+      }
+
+
+      await deleteDoc(deckRef)
+
+      setAvailableDecks(prev => prev.filter(d => d !== deck))
+      setSourceDecks(prev => prev.filter(d => d !== deck))
+      setTargetDecks(prev => prev.filter(d => d !== deck))
+
+      // clear selected items if it came from this deck
+      if (selectedWord) {
+        setSelectedWord(null)
+        setSelectedWordBack(null)
+        setSimilarWords([])
+        setSelectedSimilarWord(null)
+        setSelectedSimilarWordBack(null)
+      }
+
+    } catch (err) {
+      console.error("Delete failed:", err)
+      alert("Sorry—something went wrong deleting that deck.")
+    } finally {
+      setDeletingDeck(null)
+    }
+  }
+
 
   // get similar words for a selected word
   const fetchSimilarWords = async (front) => {
@@ -210,6 +264,18 @@ function Home({ user }) {
     return null
   }
 
+  // refresh similar matches when any setting changes
+  useEffect(() => {
+    if (!selectedWord) {
+      setSimilarWords([]);
+      setSelectedSimilarWord(null);
+      setSelectedSimilarWordBack(null);
+      setSelectedWordBack(null);
+      return;
+    }
+    fetchSimilarWords(selectedWord);
+  }, [selectedWord, similarityMode, targetDecks, similarityThreshold]);
+
   return (
     // whole home container
     <div className="home-container">
@@ -241,6 +307,7 @@ function Home({ user }) {
 
             <input
               id="deck-file"
+              ref={fileInputRef}
               type="file"
               accept=".txt"
               onChange={handleFileChange}
@@ -268,46 +335,88 @@ function Home({ user }) {
         {/* source and pool deck selectors */}
         <div className="deck-selection-component">
           <div className="deck-selector-block">
-            <button
-              className="import-deck-button"
-              onClick={() =>
-                setSimilarityMode(
-                  similarityMode === "definition" ? "spelling" : "definition"
-                )
-              }
-            >
-              MODE: {similarityMode.toUpperCase()}
-            </button>
+            <div className="selector-header">
+              {manageMode ? (
+                <div className="selector-title">ALL DECKS</div>
+              ) : (
+                <button
+                  className="import-deck-button mode-button"
+                  onClick={() =>
+                    setSimilarityMode(
+                      similarityMode === "definition" ? "spelling" : "definition"
+                    )
+                  }
+                >
+                  MODE: {similarityMode.toUpperCase()}
+                </button>
+              )}
 
-            <div className="deck-checkbox-lists">
-              <div>
-                <div className="checkbox-section-title">SOURCE DECKS</div>
-                {availableDecks.map((deck) => (
-                  <div key={deck} className="deck-checkbox-row">
-                    <button
-                      className={`deck-toggle-button ${sourceDecks.includes(deck) ? "active" : ""}`}
-                      onClick={() => handleToggleDeck(deck, false)}
-                      aria-label={deck}
-                    />
-                    <span className="deck-checkbox-label">{deck}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div>
-                <div className="checkbox-section-title">POOL DECKS</div>
-                {availableDecks.map((deck) => (
-                  <div key={deck} className="deck-checkbox-row">
-                    <button
-                      className={`deck-toggle-button ${targetDecks.includes(deck) ? "active" : ""}`}
-                      onClick={() => handleToggleDeck(deck, true)}
-                      aria-label={deck}
-                    />
-                    <span className="deck-checkbox-label">{deck}</span>
-                  </div>
-                ))}
-              </div>
+              <button
+                className={`import-deck-button manage-decks-button ${manageMode ? "toggled" : ""}`}
+                onClick={() => setManageMode((v) => !v)}
+              >
+                MANAGE
+              </button>
             </div>
+
+            {!manageMode ? (
+              <div className="deck-checkbox-lists">
+                <div>
+                  <div className="checkbox-section-title">SOURCE DECKS</div>
+                  {availableDecks.map((deck) => (
+                    <div
+                      key={deck}
+                      className="deck-checkbox-row"
+                    >
+                      <button
+                        className={`deck-toggle-button ${sourceDecks.includes(deck) ? "active" : ""}`}
+                        onClick={() => handleToggleDeck(deck, false)}
+                        aria-label={deck}
+                      />
+                      <span className="deck-checkbox-label">{deck}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div>
+                  <div className="checkbox-section-title">POOL DECKS</div>
+                  {availableDecks.map((deck) => (
+                    <div key={deck} className="deck-checkbox-row">
+                      <button
+                        className={`deck-toggle-button ${targetDecks.includes(deck) ? "active" : ""}`}
+                        onClick={() => handleToggleDeck(deck, true)}
+                        aria-label={deck}
+                      />
+                      <span className="deck-checkbox-label">{deck}</span>
+
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="deck-manage-list">
+                <div className="deck-manage-scroll">
+                  {availableDecks.map((deck) => (
+                    <div key={deck} className="deck-manage-row">
+                      <span className="deck-checkbox-label">{deck}</span>
+                      <button
+                        className="deck-delete-btn"
+                        aria-label={`Delete ${deck}`}
+                        onClick={() => deleteDeckRecursive(deck)}
+                        type="button"
+                        disabled={deletingDeck === deck}
+                        tabIndex={-1}
+                      >
+                        {deletingDeck === deck ? "…" : "X"}
+                      </button>
+                    </div>
+                  ))}
+
+                </div>
+              </div>
+            )}
+
+
           </div>
         </div>
 
@@ -355,7 +464,7 @@ function Home({ user }) {
               <input
                 type="text"
                 className="front-search-input"
-                placeholder="search fronts"
+                placeholder="Search fronts..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />

@@ -9,10 +9,9 @@ body {
   min-width: 1440px;
 }
 
-
 /* this makes the default cursor the dark custom one */
 body {
-  cursor: url('cursor_dark.cur'), auto;
+  cursor: url('/cursor_dark.cur'), auto;
 }
 
 /* centering the main container in the middle of the screen */
