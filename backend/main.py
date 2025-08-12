@@ -21,8 +21,7 @@ cred = credentials.Certificate(cred_path)
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-# embedding model set up
-model = SentenceTransformer("all-MiniLM-L6-v2")
+
 
 # initializing fastAPI
 app = FastAPI()
@@ -40,6 +39,20 @@ class SimilarityRequest(BaseModel):
     mode: str
     targetDecks: list[str]
     threshold: float
+    
+    
+# embedding model set up
+_model = None
+def get_model():
+    global _model
+    if _model is None:
+        _model = SentenceTransformer("all-MiniLM-L6-v2")
+    return _model
+
+@app.get("/")
+def health():
+    return {"ok": True}
+
 
 def delete_subcollection(parent_ref, subcollection_name, batch_size=500):
     sub_ref = parent_ref.collection(subcollection_name)
@@ -81,6 +94,7 @@ async def upload_deck(payload: DeckUploadRequest):
             continue
 
         try:
+            model = get_model()
             front_emb = model.encode(front)
             back_emb = model.encode(back)
         except Exception as e:
