@@ -702,6 +702,7 @@ body {
     gap: 1rem;
     margin-left: -.5rem;
     margin-top: -4rem;
+    cursor: url('/cursor_dark.cur'), auto;
 }
 
 .threshold-slider {
@@ -716,6 +717,7 @@ body {
     border: none;
     outline: none;
     image-rendering: pixelated;
+    cursor: url('/cursor_dark.cur'), auto;
 }
 
 .threshold-slider::-webkit-slider-thumb {
@@ -724,7 +726,7 @@ body {
     width: 2rem;
     background: url('./assets/thumb.png') no-repeat center;
     background-size: contain;
-    cursor: url('/cursor_dark.cur'), auto;
+    cursor: url('/cursor.cur'), auto;
     image-rendering: pixelated;
 }
 
@@ -844,3 +846,7 @@ body {
     box-shadow: none !important;
 }
 
+
+.slider-container, .slider-container * {
+  cursor: url('/cursor_dark.cur'), auto;
+}
