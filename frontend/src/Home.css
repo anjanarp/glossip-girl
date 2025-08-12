@@ -377,7 +377,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: .8rem;
+    font-size: .6rem;
     margin-bottom: 0.3rem;
     cursor: url('/cursor_dark.cur'), auto;
     padding-top: .3rem;
