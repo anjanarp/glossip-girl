@@ -1,5 +1,6 @@
 # ignore virtual environments
 backend/vocabenv/
+backend/venv/
 
 # ignore Firebase service account key
 backend/service-account.json
@@ -8,3 +9,10 @@ backend/service-account.json
 __pycache__/
 **/__pycache__/
 *.pyc
+backend/.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+backend/.python-version
+backend/service-account.json
