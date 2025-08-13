@@ -4,6 +4,8 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from firebase_admin import firestore
 from sentence_transformers import SentenceTransformer
+from rapidfuzz.distance import Levenshtein as RFLev
+
 import firebase_admin
 from firebase_admin import credentials
 import pandas as pd
@@ -11,7 +13,6 @@ import numpy as np
 import json
 import os
 
-import Levenshtein
 from sklearn.metrics.pairwise import cosine_similarity
 
 
@@ -20,7 +21,6 @@ cred_path = os.environ.get("FIREBASE_CREDENTIALS")
 cred = credentials.Certificate(cred_path)
 firebase_admin.initialize_app(cred)
 db = firestore.client()
-
 
 
 # initializing fastAPI
@@ -194,7 +194,7 @@ async def compute_similarity(req: SimilarityRequest):
                     tgt = entry.get("front", "")
                     if not tgt or tgt == req.word:
                         continue
-                    edit_distance = Levenshtein.distance(req.word, tgt)
+                    edit_distance = RFLev.distance(req.word, tgt)
                     max_len = max(len(req.word), len(tgt))
                     if max_len == 0:
                         continue
