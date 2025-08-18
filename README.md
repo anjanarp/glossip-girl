@@ -62,7 +62,6 @@ Glossip Girl is a browser‑based vocabulary exploration tool for personal study
 - **Embedding:** sentence‑transformers (`all-MiniLM-L6-v2`)
 - **Styling:** custom CSS, retro pixel aesthetic (Press Start 2P), bright pink palette, custom cursor
 
----
 
 ## 4) Data Model (Actual Behavior)
 
