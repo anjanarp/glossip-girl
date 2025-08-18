@@ -112,7 +112,7 @@ Glossip Girl is a browser‑based vocabulary exploration tool for personal study
 
 ## 8) How to Validate the MVP
 
-1. Sign in → import two small decks via `.txt` → mark one as Source and one as Target → toggle Mode → adjust threshold (sample datasets can be found here: [https://drive.google.com/drive/folders/1ANPXcGEhWBFHjz\_L9Vew4GQE9J1-jryZ?usp=sharing](https://drive.google.com/drive/folders/1ANPXcGEhWBFHjz_L9Vew4GQE9J1-jryZ?usp=sharing))
+1. Sign in (https://glossipgirlanki.com/) → import two small decks via `.txt` → mark one as Source and one as Target → toggle Mode → adjust threshold (sample datasets can be found here: [https://drive.google.com/drive/folders/1ANPXcGEhWBFHjz\_L9Vew4GQE9J1-jryZ?usp=sharing](https://drive.google.com/drive/folders/1ANPXcGEhWBFHjz_L9Vew4GQE9J1-jryZ?usp=sharing))
 2. Enter **Manage Decks** → hover to reveal delete “X” → delete a deck → confirm it disappears from toggles and results.
 
 ## 9) Credits
