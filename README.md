@@ -9,6 +9,11 @@ Glossip Girl is a browser‑based vocabulary exploration tool for personal study
 - Toggle which decks act as **Source** (the words you’re studying) and which act as **Target** (the comparison pool).
 - Switch **Mode** between **definition similarity** and **spelling similarity** and view tight neighbors.
 - Enter a **Manage Decks** mode to review/delete decks without cluttering the study flow.
+<img width="1512" height="982" alt="landing page" src="https://github.com/user-attachments/assets/53c47b8d-ae38-470f-b224-99503645e29a" />
+<img width="1512" height="982" alt="delete decks" src="https://github.com/user-attachments/assets/55547249-29a4-4194-8fd0-a6c331a8ca59" />
+<img width="1512" height="982" alt="find similar definitions" src="https://github.com/user-attachments/assets/84c64e50-3a4d-49ef-bee5-a186e4e043a3" />
+<img width="1512" height="982" alt="find similar spellings" src="https://github.com/user-attachments/assets/3aa2345f-2444-4bfd-8696-6e231b0f66a8" />
+
 
 **Design priorities:**
 
