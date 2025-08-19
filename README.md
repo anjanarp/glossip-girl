@@ -9,10 +9,22 @@ Glossip Girl is a browser‑based vocabulary exploration tool for personal study
 - Toggle which decks act as **Source** (the words you’re studying) and which act as **Target** (the comparison pool).
 - Switch **Mode** between **definition similarity** and **spelling similarity** and view tight neighbors.
 - Enter a **Manage Decks** mode to review/delete decks without cluttering the study flow.
-<img width="1512" height="982" alt="landing page" src="https://github.com/user-attachments/assets/53c47b8d-ae38-470f-b224-99503645e29a" />
-<img width="1512" height="982" alt="delete decks" src="https://github.com/user-attachments/assets/55547249-29a4-4194-8fd0-a6c331a8ca59" />
-<img width="1512" height="982" alt="find similar definitions" src="https://github.com/user-attachments/assets/84c64e50-3a4d-49ef-bee5-a186e4e043a3" />
-<img width="1512" height="982" alt="find similar spellings" src="https://github.com/user-attachments/assets/3aa2345f-2444-4bfd-8696-6e231b0f66a8" />
+
+**What makes this different than the normal online dictionary or thesauras that lists similar synonyms and antonyms, is that it allows a user to leverage their own study decks from the popular Anki study tool in their own domain of study. For example, I found this to help my need of studying for the GRE Verbal Section, but what inspired me to make this was also my friend who was studying for the MCAT.
+
+Landing Page:
+<img width="1512" height="944" alt="landing page" src="https://github.com/user-attachments/assets/0ed81f5c-9583-4b59-89e1-969dcb480f29" />
+
+Modal to Import and Delete "Decks":
+<img width="1512" height="943" alt="delete decks" src="https://github.com/user-attachments/assets/b1c419dd-e4ee-45de-9dfe-4694d1b884d6" />
+
+Search specific "fronts" and find similar definitions:
+<img width="1512" height="942" alt="find similar definitions" src="https://github.com/user-attachments/assets/044004a7-42bb-40de-a436-1078e5509873" />
+
+Find similar spellings of a "front":
+<img width="1512" height="942" alt="find similar spellings" src="https://github.com/user-attachments/assets/6ad1c25c-79f6-4ce7-9435-f83800a37dad" />
+
+
 
 
 **Design priorities:**
