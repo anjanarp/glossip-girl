@@ -10,7 +10,7 @@ Glossip Girl is a browser‑based vocabulary exploration tool for personal study
 - Switch **Mode** between **definition similarity** and **spelling similarity** and view tight neighbors.
 - Enter a **Manage Decks** mode to review/delete decks without cluttering the study flow.
 
-**What makes this different than the normal online dictionary or thesauras that lists similar synonyms and antonyms, is that it allows a user to leverage their own study decks from the popular Anki study tool in their own domain of study. For example, I found this to help my need of studying for the GRE Verbal Section, but what inspired me to make this was also my friend who was studying for the MCAT.
+**What makes this different than the normal online dictionary or thesauras that lists similar synonyms and antonyms, is that it allows a user to leverage their own study decks from the popular Anki study tool in their own domain of study. For example, I found this to help my need of studying for the GRE Verbal Section, but what inspired me to make this was also my friend who was studying for the MCAT.**
 
 Landing Page:
 <img width="1512" height="944" alt="landing page" src="https://github.com/user-attachments/assets/0ed81f5c-9583-4b59-89e1-969dcb480f29" />
