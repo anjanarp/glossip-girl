@@ -132,8 +132,3 @@ Find similar spellings of a "front":
 1. Sign in (https://glossipgirlanki.com/) → import two small decks via `.txt` → mark one as Source and one as Target → toggle Mode → adjust threshold (sample datasets can be found here: [https://drive.google.com/drive/folders/1ANPXcGEhWBFHjz\_L9Vew4GQE9J1-jryZ?usp=sharing](https://drive.google.com/drive/folders/1ANPXcGEhWBFHjz_L9Vew4GQE9J1-jryZ?usp=sharing))
 2. Enter **Manage Decks** → hover to reveal delete “X” → delete a deck → confirm it disappears from toggles and results.
 
-## 9) Credits
-
-Personal learning tool. Fonts and assets per their respective licenses. Firebase, FastAPI, and React are trademarks of their owners.
-
----
